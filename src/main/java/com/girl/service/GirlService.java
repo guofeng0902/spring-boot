@@ -17,6 +17,9 @@ public class GirlService {
     @Autowired
     private GirlRepository girlRepository;
 
+    /**
+     * 并行处理事物
+     */
     @Transactional
     public void insertTwo(){
         Girl girlA  =new Girl();
@@ -28,6 +31,16 @@ public class GirlService {
         girlB.setAge(19);
         girlB.setCupSize("B");
         girlRepository.save(girlB);
+    }
+    public void getAge(Integer id){
+        Girl girl= girlRepository.findOne(id);
+        Integer age = girl.getAge();
+
+        if(age <10){
+            //返回你还在上小学吧
+        }else if(age >10 && age <16){
+            //返回你还在上初中吧
+        }
     }
 
 }

@@ -2,8 +2,10 @@ package com.girl.controller;
 
 import com.girl.aspect.HttpAspect;
 import com.girl.domain.Girl;
+import com.girl.domain.Result;
 import com.girl.repository.GirlRepository;
 import com.girl.service.GirlService;
+import com.girl.utlis.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,16 +47,14 @@ public class GirlController {
      * @return
      */
     @PostMapping(value = "/girls")
-    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            logger.info(bindingResult.getFieldError().getDefaultMessage());
-            return null;
-        }
+    public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) {
 
+        if (bindingResult.hasErrors()){
+            return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
+        }
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
-
-        return girlRepository.save(girl);
+        return ResultUtil.success(girlRepository.save(girl));
     }
 
     /**
@@ -113,11 +113,19 @@ public class GirlController {
         return girlRepository.findByAge(age);
     }
 
+    /**
+     * 同时插入多条事物处理
+     */
     @PostMapping(value = "/girls/two")
     public void girlTwo(){
         girlService.insertTwo();
 
     }
 
+    @GetMapping(value = "girl/getAge/{id}")
+    public void getAge(@PathVariable("id") Integer id) {
 
+
+//        return id
+    }
 }

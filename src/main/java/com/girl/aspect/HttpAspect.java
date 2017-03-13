@@ -21,44 +21,46 @@ public class HttpAspect {
     private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
     @Pointcut("execution(public * com.girl.controller.GirlController.*(..))")
-    public void log(){
+    public void log() {
 
     }
+
     @Before("log()")
-    public void doBefore(JoinPoint joinPoint){
-        ServletRequestAttributes attributes =  (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-       HttpServletRequest request = attributes.getRequest();
+    public void doBefore(JoinPoint joinPoint) {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
 
         //url
 
-        logger.info("url={}",request.getRequestURI());
+        logger.info("url={}", request.getRequestURI());
         //method
 
-        logger.info("method={}",request.getMethod());
+        logger.info("method={}", request.getMethod());
         //ip
 
-        logger.info("ip={}",request.getRemoteAddr());
+        logger.info("ip={}", request.getRemoteAddr());
         //类方法
 
-        logger.info("class_method={}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
+        logger.info("class_method={}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         //参数
-        logger.info("args={}",joinPoint.getArgs());
+        logger.info("args={}", joinPoint.getArgs());
 //        System.out.println(11111111);
         logger.info("11111111111");
     }
 
     @After("log()")
-    public void doAfter(){
+    public void doAfter() {
         logger.info("2222222");
     }
 
     /**
      * 获取返回数据
+     *
      * @param object
      */
     @AfterReturning(returning = "object", pointcut = "log()")
-    public void doAfterReturning(Object object){
-        logger.info("response={}",object.toString());
+    public void doAfterReturning(Object object) {
+        logger.info("response={}", object.toString());
 
     }
 }

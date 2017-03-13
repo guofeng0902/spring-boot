@@ -20,6 +20,7 @@ public class Girl {
     @Min(value = 18,message = "未成年少女禁止入内")
     private Integer age;
 
+
     public Girl() {
 
     }
