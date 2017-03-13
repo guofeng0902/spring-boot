@@ -9,7 +9,7 @@ spring:
   jpa:
     hibernate:
 #是否自动创建表
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
 #服务配置
 server:

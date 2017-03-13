@@ -36,9 +36,10 @@ public class GirlController {
      * @return
      */
     @GetMapping(value = "/girls")
-    public List<Girl> girlList() {
+    public Result<Girl> girlList() {
         logger.info("000000");
-        return girlRepository.findAll();
+
+        return ResultUtil.success(girlRepository.findAll()) ;
     }
 
     /**
