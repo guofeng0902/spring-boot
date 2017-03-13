@@ -1,6 +1,7 @@
 package com.girl.service;
 
 import com.girl.domain.Girl;
+import com.girl.enums.ResultEnum;
 import com.girl.exception.GirlException;
 import com.girl.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,10 @@ public class GirlService {
 
         if(age <10){
             //返回你还在上小学吧 code 100
-            throw new GirlException(100,"你还在上小学吧");
+            throw new GirlException(ResultEnum.PRIMARY_SCHOOL);//调用枚举
         }else if(age >10 && age <16){
             //返回你还在上初中吧 code 101
-            throw new GirlException(101,"你还在上初中吧");
+            throw new GirlException(ResultEnum.MIDDLE_SCHOOL);
         }
     }
 
