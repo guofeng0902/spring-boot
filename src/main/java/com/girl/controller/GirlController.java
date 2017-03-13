@@ -1,8 +1,11 @@
 package com.girl.controller;
 
+import com.girl.aspect.HttpAspect;
 import com.girl.domain.Girl;
 import com.girl.repository.GirlRepository;
 import com.girl.service.GirlService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,9 @@ import java.util.List;
  */
 @RestController
 public class GirlController {
+
+    private final static Logger logger = LoggerFactory.getLogger(GirlController.class);
+
     @Autowired
     private GirlRepository girlRepository;
 
@@ -29,6 +35,7 @@ public class GirlController {
      */
     @GetMapping(value = "/girls")
     public List<Girl> girlList() {
+        logger.info("000000");
         return girlRepository.findAll();
     }
 
@@ -40,7 +47,7 @@ public class GirlController {
     @PostMapping(value = "/girls")
     public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            logger.info(bindingResult.getFieldError().getDefaultMessage());
             return null;
         }
 
