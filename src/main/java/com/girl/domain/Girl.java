@@ -66,6 +66,7 @@ public class Girl {
     public String toString() {
         return "Girl{" +
                 "id=" + id +
+                ", money=" + money +
                 ", cupSize='" + cupSize + '\'' +
                 ", age=" + age +
                 '}';
