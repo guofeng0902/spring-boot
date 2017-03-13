@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/dbgirl
+      username: root
+      password:
+  jpa:
+    hibernate:
+#是否自动创建表
+      ddl-auto: none
+    show-sql: true
+#服务配置
+server:
+  port: 8081
+girl:
+  cupSize: B
+  age: 18
