@@ -123,8 +123,9 @@ public class GirlController {
     }
 
     @GetMapping(value = "girl/getAge/{id}")
-    public void getAge(@PathVariable("id") Integer id) {
+    public void getAge(@PathVariable("id") Integer id) throws Exception {
 
+        girlService.getAge(id);
 
 //        return id
     }
